@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
+import GoogleAuth from "./GoogleAuth";
 export default function Header() {
   return (
     <div>
@@ -16,9 +17,7 @@ export default function Header() {
           <IconButton edge="start" color="inherit" aria-label="open drawer">
             <MenuIcon />
           </IconButton>
-          {/* <Typography variant="h6" noWrap>
-            <Link to="/">RoLoDeXx</Link>
-          </Typography> */}
+
           <Grid
             container
             direction="row"
@@ -26,13 +25,20 @@ export default function Header() {
             alignItems="center"
           >
             <Grid item>
-              <Link to="/">Home</Link>
+              <Link className="headerLink" to="/">
+                Home
+              </Link>
             </Grid>
             <Grid item>
               <div>
-                <Link to="/stream/edit">Edit</Link>
-                <Link to="/stream/delete">Delete</Link>
+                <Link className="headerLink" to="/stream/edit">
+                  Browse
+                </Link>
+                {/* <Link className="headerLink" to="/stream/delete">
+                  Delete
+                </Link> */}
               </div>
+              <GoogleAuth></GoogleAuth>
             </Grid>
           </Grid>
           <div>
