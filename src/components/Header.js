@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-  Grid
-} from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Grid } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
 import GoogleAuth from "./GoogleAuth";
@@ -29,16 +23,15 @@ export default function Header() {
                 Home
               </Link>
             </Grid>
-            <Grid item>
+            <Grid item className="d-flex align-items-center">
               <div>
                 <Link className="headerLink" to="/stream/edit">
                   Browse
                 </Link>
-                {/* <Link className="headerLink" to="/stream/delete">
-                  Delete
-                </Link> */}
               </div>
-              <GoogleAuth></GoogleAuth>
+              <div>
+                <GoogleAuth></GoogleAuth>
+              </div>
             </Grid>
           </Grid>
           <div>
