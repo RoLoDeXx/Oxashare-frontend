@@ -22,7 +22,6 @@ export default class GoogleAuth extends Component {
         });
     });
   }
-
   onAuthChange = () => {
     this.setState({
       isSignedIn: this.auth.isSignedIn.get(),
@@ -34,11 +33,22 @@ export default class GoogleAuth extends Component {
       return "Login isn't confirmed";
     } else if (this.state.isSignedIn)
       return (
-        <button className="bg-danger border-danger rounded text-white">
-          Sign out <i className="fa fa-google"></i>
+        <button
+          onClick={this.auth.signOut}
+          className="bg-danger border-danger rounded text-white"
+        >
+          Sign out <i className="fab fa-google-plus-g"></i>
         </button>
       );
-    else return "Not signed in";
+    else
+      return (
+        <button
+          onClick={this.auth.signIn}
+          className="bg-success border-success rounded text-white"
+        >
+          Sign in <i className="fab fa-google-plus-g"></i>
+        </button>
+      );
   }
 
   render() {
