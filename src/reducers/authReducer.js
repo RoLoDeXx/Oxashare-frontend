@@ -1,5 +1,3 @@
-import { act } from "@testing-library/react";
-
 const INITIAL_STATE = {
   isSignedIn: null,
   userId: null,
