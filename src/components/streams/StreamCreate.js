@@ -1,20 +1,27 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import TextField from "@material-ui/core/TextField";
+import { TextField, Button } from "@material-ui/core";
 class StreamCreate extends Component {
   renderInput = ({ input, label }) => {
     return (
-      <div className="mt-3">
+      <div className="my-3">
         <TextField {...input} label={label} variant="outlined" />
       </div>
     );
   };
 
+  onSubmit = (e) => {
+    e.preventDefault();
+  };
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field name="title" label="Title" component={this.renderInput} />
         <Field name="disc" label="Discription" component={this.renderInput} />
+        <Button variant="contained" color="primary">
+          Submit
+        </Button>
       </form>
     );
   }
