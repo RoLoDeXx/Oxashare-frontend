@@ -10,22 +10,33 @@ class StreamCreate extends Component {
     );
   };
 
-  onSubmit = (e) => {
-    e.preventDefault();
+  onSubmit = (formProps) => {
+    console.log(formProps);
   };
 
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+      <form>
         <Field name="title" label="Title" component={this.renderInput} />
         <Field name="disc" label="Discription" component={this.renderInput} />
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={this.props.handleSubmit(this.onSubmit)}
+        >
           Submit
         </Button>
       </form>
     );
   }
 }
+
+const validate = (formValues) => {
+  if (!formValues.title) {
+  }
+
+  return {};
+};
 
 export default reduxForm({
   form: "stream create",
