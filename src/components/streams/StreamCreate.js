@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-
+import TextField from "@material-ui/core/TextField";
 class StreamCreate extends Component {
-  renderInput = () => {
-    return <div>I'm a input</div>;
+  renderInput = ({ input, label }) => {
+    return (
+      <div className="mt-3">
+        <TextField {...input} label={label} variant="outlined" />
+      </div>
+    );
   };
 
   render() {
     return (
       <form>
-        <Field name="title" component={this.renderInput} />
-        <Field name="disc" component={this.renderInput} />
+        <Field name="title" label="Title" component={this.renderInput} />
+        <Field name="disc" label="Discription" component={this.renderInput} />
       </form>
     );
   }
