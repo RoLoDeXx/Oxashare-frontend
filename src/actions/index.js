@@ -1,7 +1,9 @@
 import streams from "../apis/streams";
 
 export const createStream = (formValues) => async (dispatch) => {
-  streams.post("/streams", formValues);
+  const res = await streams.post("/streams", formValues);
+
+  dispatch({ type: "CREATE_STREAM", payload: res.data });
 };
 
 export const signIn = (userId) => {
