@@ -1,10 +1,13 @@
 import streams from "../apis/streams";
+import history from "../history";
 
 export const createStream = (formValues) => async (dispatch, getState) => {
   const { userId } = getState().auth;
   const res = await streams.post("/streams", { ...formValues, userId });
 
   dispatch({ type: "CREATE_STREAM", payload: res.data });
+
+  history.push("/");
 };
 
 export const fetchStreams = () => async (dispatch) => {
@@ -20,15 +23,17 @@ export const fetchStream = (id) => async (dispatch) => {
 };
 
 export const editStream = (id, formValues) => async (dispatch) => {
-  const res = await streams.put(`/streams/${id}`, formValues);
+  const res = await streams.patch(`/streams/${id}`, formValues);
 
   dispatch({ type: "EDIT_STREAM", payload: res.data });
+  history.push("/");
 };
 
 export const deleteStream = (id) => async (dispatch) => {
   await streams.delete(`/streams/${id}`);
 
   dispatch({ type: "DELETE_STREAM", payload: id });
+  history.go(0);
 };
 
 export const signIn = (userId) => {

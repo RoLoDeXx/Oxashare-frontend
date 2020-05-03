@@ -1,66 +1,20 @@
 import React, { Component } from "react";
-import { Field, reduxForm } from "redux-form";
-import { TextField, Button } from "@material-ui/core";
 import { connect } from "react-redux";
 import { createStream } from "../../actions";
-
+import StreamForm from "./StreamForm";
 class StreamCreate extends Component {
-  renderInput = ({ input, label, meta }) => {
-    return (
-      <div className="my-3">
-        <TextField
-          className="w-100"
-          {...input}
-          label={label}
-          variant="outlined"
-          autoComplete="off"
-        />
-        {meta.error && meta.touched && (
-          <div className=" my-3 alert alert-danger" role="alert">
-            {meta.error}
-          </div>
-        )}
-      </div>
-    );
-  };
-
   onSubmit = (formProps) => {
     this.props.createStream(formProps);
   };
 
   render() {
     return (
-      <form>
-        <Field name="title" label="Title" component={this.renderInput} />
-        <Field name="disc" label="Discription" component={this.renderInput} />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.props.handleSubmit(this.onSubmit)}
-        >
-          Submit
-        </Button>
-      </form>
+      <div>
+        <h3 className="mt-3">Create a stream</h3>
+        <StreamForm onSubmit={this.onSubmit} />
+      </div>
     );
   }
 }
 
-const validate = (formValues) => {
-  const errors = {};
-  if (!formValues.title) {
-    errors.title = "You must add a title!";
-  }
-
-  if (!formValues.disc) {
-    errors.disc = "You must add a description!";
-  }
-
-  return errors;
-};
-
-let formWrapper = reduxForm({
-  form: "stream create",
-  validate,
-})(StreamCreate);
-
-export default connect(null, { createStream })(formWrapper);
+export default connect(null, { createStream })(StreamCreate);
